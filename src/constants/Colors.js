@@ -7,4 +7,5 @@ export default {
     background: "#F9FBF",
     inputBorder: "#e8e8e8",
     acarreAppLogo: "#4B91F1",
+    mapBackGround: "#a0abff",
 };
