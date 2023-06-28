@@ -8,6 +8,7 @@ import {
 import Input from "../../components/Input";
 import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
+import CustomTitle from "../../components/CustomTitle";
 const logo = require("../../../assets/acarreapp_icon.png");
 
 export default function SignInScreen({navigation}) {
@@ -35,6 +36,7 @@ export default function SignInScreen({navigation}) {
                 resizeMode="contain"
                 source={logo}
             />
+            <CustomTitle title="Crear una cuenta" />
             <Input
                 placeholder="Usuario"
                 value={username}

@@ -16,7 +16,7 @@ const TabBarNavigator = createBottomTabNavigator();
 
 export const TabNavigator = () => {
     return (
-        <TabBarNavigator.Navigator tabBar={(props) => <TabBar {...props} />}>
+        <TabBarNavigator.Navigator tabBar={(props) => <TabBar {...props} />}  screenOptions={{headerShown: false}} >
             <TabBarNavigator.Screen name="Inicio" component={HomeScreen} />
             <TabBarNavigator.Screen
                 name="Contrata"

@@ -6,4 +6,5 @@ export default {
     border: "#D6DBDF",
     background: "#F9FBF",
     inputBorder: "#e8e8e8",
+    acarreAppLogo: "#4B91F1",
 };

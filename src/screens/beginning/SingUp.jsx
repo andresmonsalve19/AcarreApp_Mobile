@@ -4,7 +4,6 @@ import Input from "../../components/Input";
 import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
 import CustomTitle from "../../components/CustomTitle";
-const logo = require("../../../assets/acarreapp_icon.png");
 
 export default function SignupScreen({navigation}) {
     const [usernames, setUsernames] = useState("");
