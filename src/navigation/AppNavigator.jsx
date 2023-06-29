@@ -10,6 +10,8 @@ import SearchAcarreoScreen from "../screens/principal/SearchAcarreo";
 import AcarreoInfoScreen from "../screens/principal/AcarreosInfo";
 import SignInScreen from "../screens/beginning/SignIn";
 import SignupScreen from "../screens/beginning/SingUp";
+import SearchAddress from "../screens/secondary/SearchAddress";
+import ServiceView from "../screens/secondary/ServiceView";
 
 const Stack = createStackNavigator();
 const TabBarNavigator = createBottomTabNavigator();
@@ -35,6 +37,8 @@ function StackNavigator() {
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="Signin" component={SignInScreen} />
             <Stack.Screen name="Signup" component={SignupScreen} />
+            <Stack.Screen name="SeleccionaDestino" component={SearchAddress} />
+            <Stack.Screen name="RutaAcarreo" component={ServiceView} />
             <Stack.Screen name="Principal" component={TabNavigator} />
         </Stack.Navigator>
     );

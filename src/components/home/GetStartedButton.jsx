@@ -7,7 +7,7 @@ import {
     TouchableHighlight,
 } from "react-native";
 import * as Haptics from "expo-haptics";
-import Colors from "../constants/Colors";
+import Colors from "../../constants/Colors";
 
 const GetStartedButton = ({title, navigateTo }) => {
     
