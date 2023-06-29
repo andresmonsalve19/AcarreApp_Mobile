@@ -10,7 +10,7 @@ import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
 const logo = require("../../../assets/acarreapp_icon.png");
 import axios from 'axios';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignInScreen({navigation}) {
     const [username, setUsername] = useState("");
@@ -18,8 +18,8 @@ export default function SignInScreen({navigation}) {
 
     const login = async (username, password) => {
         try {
-          const response = await axios.post('http://192.168.0.10:8000/api/token/', { "username": username, "password": password });
-          const token = response.access;
+          const response = await axios.post('https://98cb-2800-e2-b680-f83-d943-7ea7-574b-a040.ngrok-free.app/api/token/', { username: username, password: password });
+          const token = response.data.access;
       
           // Almacena el token en AsyncStorage u otra forma de almacenamiento persistente
           // para utilizarlo en solicitudes subsiguientes
