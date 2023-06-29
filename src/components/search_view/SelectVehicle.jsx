@@ -10,20 +10,10 @@ import GetStartedButton from "../home/GetStartedButton";
 const SelectVehicle = ({navigateTo}) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.selectType}>Selecciona tu transporte</Text>
+            <Text style={styles.selectType}>Información del Acarreo</Text>
             <VehicleRow
                 type={"Camión"}
                 imageURI={carriers[0].vehiclePhoto}
-                price={"150.000 COP"}
-            />
-            <VehicleRow
-                type={"Camión"}
-                imageURI={carriers[1].vehiclePhoto}
-                price={"150.000 COP"}
-            />
-            <VehicleRow
-                type={"Camión"}
-                imageURI={carriers[2].vehiclePhoto}
                 price={"150.000 COP"}
             />
             <View style={styles.payMethod}>
