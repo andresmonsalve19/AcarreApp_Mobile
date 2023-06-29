@@ -1,14 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native'; 
 import AvailableService from './AvailableService';
-import carriers from "../../../data/example_data/carriers";
 
-const AvailableServicesList = () => {
+const AvailableServicesList = ({carriersNear}) => {
+    
     return (
         <FlatList
             style={styles.container}
-            data={carriers}
-            renderItem={({item: carrier}) => <AvailableService {...carrier} />}
+            data={carriersNear}
+            renderItem={({item: carrier}) => (
+                <AvailableService {...carrier} />
+            )}
         />
     );
 }; 

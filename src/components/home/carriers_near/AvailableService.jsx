@@ -4,22 +4,22 @@ import Colors from "../../../constants/Colors";
 
 const AvailableService = (props) => {
     return (
-        <View key={props.user} style={styles.container}>
+        <View key={props.id} style={styles.container}>
             <View style={styles.vehicleContainer}>
                 <Image
                     style={styles.vehicleImage}
                     source={{
-                        uri: props.vehiclePhoto,
+                        uri: props.carrier.vehicle.image,
                     }}
                 />
-                <Text style={styles.vehicleName}>{props.vehicle}</Text>
+                <Text style={styles.vehicleName}>{props.carrier.vehicle.type}</Text>
             </View>
             <View style={styles.carrierContainer}>
-                <Text style={styles.carrierName}>{props.name}</Text>
+                <Text style={styles.carrierName}>{props.carrier.user.name}</Text>
                 <Image
                     style={styles.carrierPhoto}
                     source={{
-                        uri: props.photo,
+                        uri: props.carrier.photo
                     }}
                 />
             </View>
