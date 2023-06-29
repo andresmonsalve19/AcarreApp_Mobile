@@ -25,11 +25,11 @@ export const TabNavigator = () => {
             <TabBarNavigator.Screen name="Inicio" component={HomeScreen} />
             <TabBarNavigator.Screen
                 name="Contrata"
-                component={AcarreoFormScreen}
+                component={SearchAcarreoScreen}
             />
             <TabBarNavigator.Screen
                 name="Seguimiento"
-                component={CarriageList}
+                component={AcarreoInfoScreen}
             />
         </TabBarNavigator.Navigator>
     );
@@ -42,6 +42,9 @@ function StackNavigator() {
             <Stack.Screen name="Signup" component={SignupScreen} />
             <Stack.Screen name="SeleccionaDestino" component={SearchAddress} />
             <Stack.Screen name="RutaAcarreo" component={ServiceView} />
+            <Stack.Screen name="Carrito" component={CarryHystoryScreen} />
+            <Stack.Screen name="FormularioAcarreo" component={AcarreoFormScreen} />
+            <Stack.Screen name="CarritoLista" component={CarriageList} />
             <Stack.Screen name="Principal" component={TabNavigator} />
         </Stack.Navigator>
     );

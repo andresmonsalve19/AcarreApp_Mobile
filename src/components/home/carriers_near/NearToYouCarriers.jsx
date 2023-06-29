@@ -6,16 +6,16 @@ import AvailableServicesList from "./AvailbleServicesList";
 import Colors from "../../../constants/Colors";
 import GetStartedButton from "../GetStartedButton";
 
-const NearToYouCarriers = ({navigateTo}) => {
+const NearToYouCarriers = ({navigateTo, carriersNear}) => {
     useEffect(() => {
         LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
     }, []);
-    
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.nearToYouText}>Acarredores cerca de ti</Text>
             {/* Acarreadores cerca - Flatlist de servicios disponibles cercanos */}
-            <AvailableServicesList />
+            <AvailableServicesList carriersNear={carriersNear} />
             {/* Método de pago */}
             <View style={styles.payMethod}>
                 <MaterialCommunityIcons name="cash" size={30} />

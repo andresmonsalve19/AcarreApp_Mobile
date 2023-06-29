@@ -5,13 +5,13 @@ import {useNavigation} from "@react-navigation/native";
 import MapViewDirections from "react-native-maps-directions";
 import { useRoute } from "@react-navigation/native";
 import SelectVehicle from "../../components/search_view/SelectVehicle";
+import NearToYouCarriers from "../../components/home/carriers_near/NearToYouCarriers";
 
-const ServiceView = (props) => {
+const ServiceView = (navigation) => {
     const route = useRoute();
-
     const [origin, setOrigin] = useState({
-        latitude: route.params.from.data.geometry.location.lat,
-        longitude: route.params.from.data.geometry.location.lng,
+        latitude: route.params.from.details.geometry.location.lat,
+        longitude: route.params.from.details.geometry.location.lng,
     });
 
     const [destination, setDestination] = useState({
@@ -19,9 +19,9 @@ const ServiceView = (props) => {
         longitude: route.params.destination.details.geometry.location.lng,
     });
     
-    const goToConfirmAcarreo = () => {
-        console.warn("Acarreo confirmado")
-    }
+    const goToRequestAcarreo = () => {
+        navigation.navigate("Seguimiento");
+    };
 
     return (
         <View style={styles.container}>
@@ -50,7 +50,7 @@ const ServiceView = (props) => {
                     strokeWidth={6}
                 />
             </MapView>
-            <SelectVehicle navigateTo={goToConfirmAcarreo} />
+            <NearToYouCarriers navigateTo={goToRequestAcarreo} carriersNear={route.params.carriersNear} />
         </View>
     );
 };
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     map: {
         width: "100%",
-        height: "65%",
+        height: "45%",
     },
 });
 

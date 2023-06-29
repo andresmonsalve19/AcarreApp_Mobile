@@ -4,8 +4,8 @@ import Input from "../../components/Input";
 import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
 import CustomTitle from "../../components/CustomTitle";
+import signup from "../../data/api/signup";
 const logo = require("../../../assets/acarreapp_icon.png");
-import axios from 'axios';
 
 export default function SignupScreen({navigation}) {
     const [usernames, setUsernames] = useState("");
@@ -19,56 +19,38 @@ export default function SignupScreen({navigation}) {
 
     const showAlert = () =>
         Alert.alert(
-            'Alert Title',
-            'My Alert Msg',
+            "Alert Title",
+            "My Alert Msg",
             [
-            {
-                text: 'Cancel',
-                onPress: () => Alert.alert('Cancel Pressed'),
-                style: 'cancel',
-            },
+                {
+                    text: "Cancel",
+                    onPress: () => Alert.alert("Cancel Pressed"),
+                    style: "cancel",
+                },
             ],
             {
-            cancelable: true,
-            onDismiss: () =>
-                Alert.alert(
-                'This alert was dismissed by tapping outside of the alert dialog.',
-                ),
-            },
+                cancelable: true,
+                onDismiss: () =>
+                    Alert.alert(
+                        "This alert was dismissed by tapping outside of the alert dialog."
+                    ),
+            }
         );
 
-    // /accounts/signup/
-    const signup = async(fullName, usernames, documentId, email, phoneNumber, password, passwordConfirmation) => {
-        try {
-            const response = await axios.post('https://98cb-2800-e2-b680-f83-d943-7ea7-574b-a040.ngrok-free.app/api/accounts/signup/', 
-            {   name: fullName, 
-                email: email,
-                username: usernames,
-                password1: password,
-                password2: passwordConfirmation,
-                client: {
-                    doc_type: "CC",
-                    doc_number: documentId,
-                    phone: phoneNumber,
-                }
-            });
-            console.log(response.data);
-            
-            navigation.navigate("Signin");
-            showAlert;
-        } catch (error) {
-            //console.log(error.data);
-            const data = error.response.data;
-            console.error("request data", data);
-            console.error('Error de registro:', error);
-            throw error;
-        }
-    }
-
     const onPressCreateAccountButton = () => {
-        signup(fullName, usernames, documentId, email, phoneNumber, password, passwordConfirmation);
+        signup(
+            fullName,
+            usernames,
+            documentId,
+            email,
+            phoneNumber,
+            password,
+            passwordConfirmation
+        );
+        navigation.navigate("Signin");
+        showAlert;
     };
-    
+
     const onPressAlreadyHaveAnAccountButton = () => {
         navigation.navigate("Signin");
     };
@@ -87,14 +69,14 @@ export default function SignupScreen({navigation}) {
                     value={fullName}
                     setValue={setFullName}
                 />
-                
+
                 {/* <Input
                     placeholder="Tipo de documento"
                     value={documentType}
                     setValue={setDocumentType}
                     defaultValue="CC"
                 /> */}
-                
+
                 <Input
                     placeholder="Nro. Documento"
                     value={documentId}
@@ -147,5 +129,5 @@ const styles = StyleSheet.create({
     getData: {
         width: "100%",
         marginTop: 32,
-    }
+    },
 });

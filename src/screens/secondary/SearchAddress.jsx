@@ -5,6 +5,7 @@ import Colors from "../../constants/Colors";
 import {GooglePlacesAutocomplete} from "react-native-google-places-autocomplete";
 import PlacesSuggested from "../../components/search_adress/PlacesSuggested";
 import GetStartedButton from "../../components/home/GetStartedButton";
+import carryAvailable from "../../data/api/carryAvailable";
 
 const SearchAddress = () => {
     const navigation = useNavigation();
@@ -20,9 +21,13 @@ const SearchAddress = () => {
     const [from, setFrom] = useState(null);
     const [destination, setDestination] = useState(null);
     
-    const goToServiceView = () => {
+    const goToServiceView = async () => {
         if (from && destination) {
-            navigation.navigate("RutaAcarreo", {from, destination});
+            const carriersNear = await carryAvailable(
+                from.details.geometry.location.lat,
+                from.details.geometry.location.lng
+            );
+            navigation.navigate("RutaAcarreo", {from, destination, carriersNear});
         } else {
             alert("Por favor ingrese su dirección de destino");
         }
