@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {StyleSheet, View} from "react-native";
+import {StyleSheet, View, Alert} from "react-native";
 import Input from "../../components/Input";
 import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
@@ -19,28 +19,20 @@ export default function SignupScreen({navigation}) {
 
     const showAlert = () =>
         Alert.alert(
-            'Alert Title',
-            'My Alert Msg',
+            'Cuenta creada correctamente',
+            'Se envió un email de verificación',
             [
             {
-                text: 'Cancel',
-                onPress: () => Alert.alert('Cancel Pressed'),
+                text: 'Ok',
                 style: 'cancel',
             },
             ],
-            {
-            cancelable: true,
-            onDismiss: () =>
-                Alert.alert(
-                'This alert was dismissed by tapping outside of the alert dialog.',
-                ),
-            },
         );
 
     // /accounts/signup/
     const signup = async(fullName, usernames, documentId, email, phoneNumber, password, passwordConfirmation) => {
         try {
-            const response = await axios.post('https://98cb-2800-e2-b680-f83-d943-7ea7-574b-a040.ngrok-free.app/api/accounts/signup/', 
+            const response = await axios.post('http://192.168.0.10:8000/api/accounts/signup/', 
             {   name: fullName, 
                 email: email,
                 username: usernames,
@@ -55,7 +47,7 @@ export default function SignupScreen({navigation}) {
             console.log(response.data);
             
             navigation.navigate("Signin");
-            showAlert;
+            showAlert();
         } catch (error) {
             //console.log(error.data);
             const data = error.response.data;

@@ -4,6 +4,7 @@ import {
     View,
     Image,
     useWindowDimensions,
+    Alert,
 } from "react-native";
 import Input from "../../components/Input";
 import Colors from "../../constants/Colors";
@@ -17,9 +18,23 @@ export default function SignInScreen({navigation}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const showAlert = () =>
+        Alert.alert(
+            'No se pudo iniciar sesión',
+            'El usuario o contraseña es incorrecto, o el email no se ha verificado',
+            [
+            {
+                text: 'Ok',
+                style: 'cancel',
+            },
+            ],
+        );
+
     const login = async (username, password) => {
         try {
-          const response = await axios.post('https://98cb-2800-e2-b680-f83-d943-7ea7-574b-a040.ngrok-free.app/api/accounts/login/', { username: username, password: password });
+          //const response = await axios.post('https://98cb-2800-e2-b680-f83-d943-7ea7-574b-a040.ngrok-free.app/api/accounts/login/', { username: username, password: password });
+          const response = await axios.post('http://192.168.0.10:8000/api/accounts/login/', { username: username, password: password });
+          
           const token = response.data.access;
       
           // Almacena el token en AsyncStorage u otra forma de almacenamiento persistente
@@ -29,6 +44,7 @@ export default function SignInScreen({navigation}) {
           navigation.navigate("Principal");
           return token;
         } catch (error) {
+            showAlert();
           console.error('Error de autenticación:', error);
           throw error;
         }

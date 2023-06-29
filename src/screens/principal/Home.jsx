@@ -4,12 +4,18 @@ import Colors from "../../constants/Colors";
 import CustomButton from "../../components/GetStartedButton";
 import CustomTitle from "../../components/CustomTitle";
 import GetStartedButton from "../../components/GetStartedButton";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const image = require("../../../assets/acarreapp_icon.png");
 
 export default function HomeScreen({navigation}) {
     const onPressGetStartButton = () => {
         navigation.navigate("Contrata");
+    };
+
+    const onPressLogOutButton = async() => {
+        await AsyncStorage.removeItem('token');
+        navigation.navigate("Signin");
     };
 
     return (
@@ -21,6 +27,7 @@ export default function HomeScreen({navigation}) {
                 />
                 <CustomTitle title="Bienvenido a AcarreApp!" />
                 <GetStartedButton title="Comenzar" navigateTo={onPressGetStartButton} />
+                <GetStartedButton title="Cerrar sesión" navigateTo={onPressLogOutButton} />
             </ScrollView>
     );
 }
