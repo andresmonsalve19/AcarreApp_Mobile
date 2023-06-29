@@ -16,29 +16,20 @@ export default function SignInScreen({navigation}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const login = async () => {
-        const response = await fetch('http://192.168.0.10:8000/api/token/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: {
-            "username": "user1",
-            "password": "user1user1"
-          },
-        });
+    const login = async (username, password) => {
+        try {
+          const response = await axios.post('http://192.168.0.10:8000/api/token/', { "username": username, "password": password });
+          const token = response.access;
       
-        try { 
-          const data = await response.json();
-          if(data != null){
-            console.log(JSON.Parse(data));
-          }
-          const accessToken = data.access;
-          // Guardar el token de acceso en AsyncStorage o en el lugar de tu elección
-          console.log('Token de acceso:', accessToken);
+          // Almacena el token en AsyncStorage u otra forma de almacenamiento persistente
+          // para utilizarlo en solicitudes subsiguientes
+          // Ejemplo con AsyncStorage:
+          await AsyncStorage.setItem('token', token);
           navigation.navigate("Principal");
+          return token;
         } catch (error) {
-          console.log('Error al autenticar', error);
+          console.error('Error de autenticación:', error);
+          throw error;
         }
       };
       
@@ -46,7 +37,7 @@ export default function SignInScreen({navigation}) {
     const {height} = useWindowDimensions();
 
     const onPressSingInButton = () => {
-        login();
+        login(username, password);
     };
 
     const onPressForgotPasswordButton = () => {
