@@ -10,15 +10,35 @@ import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
 import CustomTitle from "../../components/CustomTitle";
 const logo = require("../../../assets/acarreapp_icon.png");
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignInScreen({navigation}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const login = async (username, password) => {
+        try {
+          const response = await axios.post('https://98cb-2800-e2-b680-f83-d943-7ea7-574b-a040.ngrok-free.app/api/accounts/login/', { username: username, password: password });
+          const token = response.data.access;
+      
+          // Almacena el token en AsyncStorage u otra forma de almacenamiento persistente
+          // para utilizarlo en solicitudes subsiguientes
+          // Ejemplo con AsyncStorage:
+          await AsyncStorage.setItem('token', token);
+          navigation.navigate("Principal");
+          return token;
+        } catch (error) {
+          console.error('Error de autenticación:', error);
+          throw error;
+        }
+      };
+      
+
     const {height} = useWindowDimensions();
 
     const onPressSingInButton = () => {
-        navigation.navigate("Principal");
+        login(username, password);
     };
 
     const onPressForgotPasswordButton = () => {

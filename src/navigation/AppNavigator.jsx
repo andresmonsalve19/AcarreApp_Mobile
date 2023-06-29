@@ -6,6 +6,9 @@ import {createStackNavigator} from "@react-navigation/stack";
 
 //Screens
 import HomeScreen from "../screens/principal/Home";
+import CarryHystoryScreen from "../screens/principal/Historial";
+import AcarreoFormScreen from "../screens/formulario/AcarreoForm1";
+import CarriageList from "../screens/principal/CarriageList";
 import SearchAcarreoScreen from "../screens/principal/SearchAcarreo";
 import AcarreoInfoScreen from "../screens/principal/AcarreosInfo";
 import SignInScreen from "../screens/beginning/SignIn";
@@ -22,11 +25,11 @@ export const TabNavigator = () => {
             <TabBarNavigator.Screen name="Inicio" component={HomeScreen} />
             <TabBarNavigator.Screen
                 name="Contrata"
-                component={SearchAcarreoScreen}
+                component={AcarreoFormScreen}
             />
             <TabBarNavigator.Screen
                 name="Seguimiento"
-                component={AcarreoInfoScreen}
+                component={CarriageList}
             />
         </TabBarNavigator.Navigator>
     );
