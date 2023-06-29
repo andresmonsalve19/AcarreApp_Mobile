@@ -17,6 +17,26 @@ export default function SignupScreen({navigation}) {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
+    const showAlert = () =>
+        Alert.alert(
+            'Alert Title',
+            'My Alert Msg',
+            [
+            {
+                text: 'Cancel',
+                onPress: () => Alert.alert('Cancel Pressed'),
+                style: 'cancel',
+            },
+            ],
+            {
+            cancelable: true,
+            onDismiss: () =>
+                Alert.alert(
+                'This alert was dismissed by tapping outside of the alert dialog.',
+                ),
+            },
+        );
+
     // /accounts/signup/
     const signup = async(fullName, usernames, documentId, email, phoneNumber, password, passwordConfirmation) => {
         try {
@@ -33,7 +53,9 @@ export default function SignupScreen({navigation}) {
                 }
             });
             console.log(response.data);
+            
             navigation.navigate("Signin");
+            showAlert;
         } catch (error) {
             //console.log(error.data);
             const data = error.response.data;
