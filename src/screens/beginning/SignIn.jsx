@@ -18,7 +18,7 @@ export default function SignInScreen({navigation}) {
 
     const login = async (username, password) => {
         try {
-          const response = await axios.post('https://98cb-2800-e2-b680-f83-d943-7ea7-574b-a040.ngrok-free.app/api/token/', { username: username, password: password });
+          const response = await axios.post('https://98cb-2800-e2-b680-f83-d943-7ea7-574b-a040.ngrok-free.app/api/accounts/login/', { username: username, password: password });
           const token = response.data.access;
       
           // Almacena el token en AsyncStorage u otra forma de almacenamiento persistente
