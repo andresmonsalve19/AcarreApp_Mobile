@@ -47,7 +47,7 @@ export default function SignupScreen({navigation}) {
             password,
             passwordConfirmation
         );
-        navigation.navigate("Signin");
+        
         showAlert;
     };
 
