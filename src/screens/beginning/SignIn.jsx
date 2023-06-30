@@ -8,6 +8,8 @@ import {
 import Input from "../../components/Input";
 import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
+import CustomTitle from "../../components/CustomTitle";
+import signin from "../../data/api/signin";
 const logo = require("../../../assets/acarreapp_icon.png");
 
 export default function SignInScreen({navigation}) {
@@ -17,7 +19,10 @@ export default function SignInScreen({navigation}) {
     const {height} = useWindowDimensions();
 
     const onPressSingInButton = () => {
-        navigation.navigate("Principal");
+        const response = signin(username, password);
+        if (response) {
+            navigation.navigate("Principal");
+        } 
     };
 
     const onPressForgotPasswordButton = () => {
@@ -35,6 +40,7 @@ export default function SignInScreen({navigation}) {
                 resizeMode="contain"
                 source={logo}
             />
+            <CustomTitle title="Crear una cuenta" />
             <Input
                 placeholder="Usuario"
                 value={username}

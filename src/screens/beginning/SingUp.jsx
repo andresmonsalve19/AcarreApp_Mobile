@@ -4,20 +4,53 @@ import Input from "../../components/Input";
 import Colors from "../../constants/Colors";
 import CustomButton from "../../components/CustomButton";
 import CustomTitle from "../../components/CustomTitle";
+import signup from "../../data/api/signup";
 const logo = require("../../../assets/acarreapp_icon.png");
 
 export default function SignupScreen({navigation}) {
     const [usernames, setUsernames] = useState("");
+    const [fullName, setFullName] = useState("");
+    const [documentType, setDocumentType] = useState("");
     const [documentId, setDocumentId] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
+    const showAlert = () =>
+        Alert.alert(
+            "Alert Title",
+            "My Alert Msg",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => Alert.alert("Cancel Pressed"),
+                    style: "cancel",
+                },
+            ],
+            {
+                cancelable: true,
+                onDismiss: () =>
+                    Alert.alert(
+                        "This alert was dismissed by tapping outside of the alert dialog."
+                    ),
+            }
+        );
+
     const onPressCreateAccountButton = () => {
-        navigation.navigate("Principal");
+        signup(
+            fullName,
+            usernames,
+            documentId,
+            email,
+            phoneNumber,
+            password,
+            passwordConfirmation
+        );
+        
+        showAlert;
     };
-    
+
     const onPressAlreadyHaveAnAccountButton = () => {
         navigation.navigate("Signin");
     };
@@ -27,10 +60,23 @@ export default function SignupScreen({navigation}) {
             <CustomTitle title="Crear una cuenta" />
             <View style={styles.getData}>
                 <Input
-                    placeholder="Nombre completo"
+                    placeholder="Nombre de usuario"
                     value={usernames}
                     setValue={setUsernames}
                 />
+                <Input
+                    placeholder="Nombre completo"
+                    value={fullName}
+                    setValue={setFullName}
+                />
+
+                {/* <Input
+                    placeholder="Tipo de documento"
+                    value={documentType}
+                    setValue={setDocumentType}
+                    defaultValue="CC"
+                /> */}
+
                 <Input
                     placeholder="Nro. Documento"
                     value={documentId}
@@ -83,5 +129,5 @@ const styles = StyleSheet.create({
     getData: {
         width: "100%",
         marginTop: 32,
-    }
+    },
 });
