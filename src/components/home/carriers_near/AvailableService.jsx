@@ -1,29 +1,41 @@
 import React from "react";
-import {View, Text, StyleSheet, Image} from "react-native";
+import {View, Text, StyleSheet, Image, TouchableOpacity} from "react-native";
 import Colors from "../../../constants/Colors";
 
-const AvailableService = (props) => {
+const AvailableService = ({props, onPress, backgroundColor}) => {
     return (
-        <View key={props.id} style={styles.container}>
-            <View style={styles.vehicleContainer}>
-                <Image
-                    style={styles.vehicleImage}
-                    source={{
-                        uri: props.carrier.vehicle.image,
-                    }}
-                />
-                <Text style={styles.vehicleName}>{props.carrier.vehicle.type}</Text>
+        <TouchableOpacity onPress={onPress}>
+            <View
+                key={props.id}
+                style={[styles.container, {backgroundColor: backgroundColor}]}
+            >
+                <View style={styles.vehicleContainer}>
+                    <Image
+                        style={styles.vehicleImage}
+                        source={{
+                            uri: props.carrier.vehicle.image,
+                        }}
+                    />
+                    <View>
+                        <Text style={styles.vehicleName}>
+                            {props.carrier.vehicle.type}
+                        </Text>
+                        <Text style={styles.vehicleName}>$150.000</Text>
+                    </View>
+                </View>
+                <View style={styles.carrierContainer}>
+                    <Text style={styles.carrierName}>
+                        {props.carrier.user.name}
+                    </Text>
+                    <Image
+                        style={styles.carrierPhoto}
+                        source={{
+                            uri: props.carrier.photo,
+                        }}
+                    />
+                </View>
             </View>
-            <View style={styles.carrierContainer}>
-                <Text style={styles.carrierName}>{props.carrier.user.name}</Text>
-                <Image
-                    style={styles.carrierPhoto}
-                    source={{
-                        uri: props.carrier.photo
-                    }}
-                />
-            </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 
@@ -36,7 +48,6 @@ const styles = StyleSheet.create({
         marginVertical: 2,
         padding: 10,
         borderRadius: 5,
-        backgroundColor: Colors.border,
         marginHorizontal: 5,
     },
     vehicleContainer: {

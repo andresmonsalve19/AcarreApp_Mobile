@@ -19,8 +19,10 @@ export default function SignInScreen({navigation}) {
     const {height} = useWindowDimensions();
 
     const onPressSingInButton = () => {
-        signin(username, password);
-        navigation.navigate("Principal");
+        const response = signin(username, password);
+        if (response) {
+            navigation.navigate("Principal");
+        } 
     };
 
     const onPressForgotPasswordButton = () => {

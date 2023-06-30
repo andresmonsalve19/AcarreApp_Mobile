@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import * as Haptics from "expo-haptics";
 import Colors from "../../constants/Colors";
+import { useNavigation } from "@react-navigation/core";
 
-const GetStartedButton = ({title, navigateTo }) => {
-    
+const GetStartedButton = ({title, navigateTo}) => {
     const animatedValue = new Animated.Value(1);
 
     const onPressIn = () => {
