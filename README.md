@@ -1,3 +1,3 @@
 # AcarreApp_Mobile
 
-El proyecto principal se encuentra en la rama andres
+El proyecto principal se encuentra en la rama "andres"
